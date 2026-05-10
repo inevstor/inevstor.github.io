@@ -1,90 +1,346 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texniki İşlər</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INEVSTOR - Daşınmaz Əmlak Agentliyi</title>
+    <!-- Font Awesome 6 для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6fc;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    body{
-      font-family: Arial, sans-serif;
-      background:#f4f4f4;
-      color:#222;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
+        /* Корпоративный цвет */
+        :root {
+            --brand: #3c47c7;
+            --brand-dark: #2e38a5;
+            --brand-light: #e8eaff;
+        }
 
-    header{
-      background:#111827;
-      color:white;
-      padding:20px;
-      text-align:center;
-      font-size:24px;
-      font-weight:bold;
-    }
+        /* Шапка */
+        .header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
 
-    main{
-      flex:1;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:20px;
-    }
+        .logo h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--brand);
+            letter-spacing: 1px;
+        }
 
-    .message{
-      background:white;
-      padding:40px;
-      border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      max-width:600px;
-    }
+        .logo p {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 5px;
+            font-weight: 300;
+        }
 
-    .message h1{
-      margin-bottom:20px;
-      font-size:32px;
-    }
+        /* Основной контент */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
 
-    .message p{
-      font-size:20px;
-      line-height:1.6;
-    }
+        .construction-icon {
+            font-size: 4rem;
+            color: var(--brand);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
 
-    footer{
-      background:#111827;
-      color:white;
-      text-align:center;
-      padding:15px;
-      font-size:14px;
-    }
-  </style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .main-message {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .sub-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        /* Форма обратной связи (телефон) */
+        .callback-form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 20px;
+        }
+
+        .callback-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .input-group input[type="tel"] {
+            flex: 1 1 200px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .input-group input[type="tel"]:focus {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(60,71,199,0.1);
+        }
+
+        .input-group button {
+            background: var(--brand);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .input-group button:hover {
+            background: var(--brand-dark);
+        }
+
+        .form-message {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #2e7d32;
+            display: none;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        /* Подвал */
+        .footer {
+            background: #1c1f2b;
+            color: #ccc;
+            padding: 40px 20px 20px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-info {
+            flex: 1 1 250px;
+        }
+
+        .footer-info h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-info p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-info i {
+            color: var(--brand-light);
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-social {
+            flex: 1 1 200px;
+        }
+
+        .footer-social h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 1.3rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: var(--brand);
+            transform: translateY(-3px);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .main-message {
+                font-size: 1.6rem;
+            }
+
+            .callback-form {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 15px 0;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="logo">
+            <h1>INEVSTOR</h1>
+            <p>Daşınmaz Əmlak Agentliyi</p>
+        </div>
+    </header>
 
-  <header>
-    Sayt Adı
-  </header>
+    <!-- Основная часть -->
+    <main class="main-content">
+        <div class="construction-icon">
+            <i class="fas fa-tools"></i>
+        </div>
+        <h2 class="main-message">
+            Sayt texniki səbəblərə görə müvəqqəti bağlıdır.<br>Sizin üçün yenilənirik.
+        </h2>
+        <p class="sub-message">
+            Tezliklə yeni funksiyalar və daha rahat interfeyslə qayıdacağıq.
+        </p>
 
-  <main>
-    <div class="message">
-      <h1>Texniki İşlər</h1>
-      <p>
-        Sayt müvəqqəti olaraq texniki işlərlə əlaqədar bağlanıb.
-        Zəhmət olmasa bir qədər sonra yenidən yoxlayın.
-      </p>
-    </div>
-  </main>
+        <!-- Форма заказа обратного звонка -->
+        <div class="callback-form">
+            <label for="phone">Əlaqə nömrənizi buraxın, biz sizə qayıdaq</label>
+            <div class="input-group">
+                <input type="tel" id="phone" placeholder="+994 (__) ___ __ __" required>
+                <button type="button" onclick="requestCallback()">Zəng sifariş et</button>
+            </div>
+            <p class="form-message" id="formMessage">Müraciətiniz qeydə alındı. Tezliklə sizinlə əlaqə saxlayacağıq.</p>
+        </div>
+    </main>
 
-  <footer>
-    © 2026 Bütün hüquqlar qorunur
-  </footer>
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Əlaqə</h3>
+                <p><i class="fas fa-phone-alt"></i> +994 (12) 345 67 89</p>
+                <p><i class="fas fa-envelope"></i> info@inevstor.az</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bakı, Azərbaycan</p>
+            </div>
+            <div class="footer-social">
+                <h3>Bizi izləyin</h3>
+                <div class="social-icons">
+                    <!-- Замените # на реальные ссылки -->
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            © 2026 INEVSTOR. Bütün hüquqlar qorunur.
+        </div>
+    </footer>
 
+    <script>
+        function requestCallback() {
+            const phoneInput = document.getElementById('phone');
+            const message = document.getElementById('formMessage');
+            // Простая проверка: в поле должно быть хотя бы 7 цифр
+            const digits = phoneInput.value.replace(/\D/g, '');
+            if (digits.length < 7) {
+                alert('Zəhmət olmasa düzgün telefon nömrəsi daxil edin.');
+                return;
+            }
+            // Имитация отправки (здесь можно добавить реальный запрос на сервер)
+            message.style.display = 'block';
+            phoneInput.value = '';
+            // Автоматически скроем сообщение через 6 секунд
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 6000);
+        }
+    </script>
 </body>
 </html>
